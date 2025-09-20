@@ -1,0 +1,15 @@
+#配置数据库的连接信息
+spring:
+  application:
+    name: springboot-mybatis-quickstart
+  #数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tlias
+    username: root
+    password: 1234
+#mybatis相关配置
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
