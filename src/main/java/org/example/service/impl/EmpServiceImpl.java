@@ -11,6 +11,7 @@ import org.example.pojo.PageResult;
 import org.example.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
@@ -59,6 +60,12 @@ public class EmpServiceImpl implements EmpService {
         return new PageResult<>(p.getTotal(), p.getResult());
     }
 
+
+    /**
+     * 保存员工信息
+     */
+    @Transactional(rollbackFor = {Exception.class}) //事务管理 -默认出现运行时异常时(RuntimeException)回滚, 可以通过rollbackFor指定回滚的异常类型
+    @Override
     public void save(Emp emp){
         // 1.保存员工基本信息
         emp.setCreateTime(LocalDateTime.now());
