@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface EmpService {
     /**
@@ -21,4 +22,9 @@ public interface EmpService {
      * 新增员工
      */
     void save(Emp emp);
+
+    /**
+     * 批量删除员工
+     */
+    void delete(List<Integer> ids);
 }

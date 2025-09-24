@@ -23,3 +23,10 @@ mybatis:
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+#阿里云OSS
+aliyun:
+    oss:
+      endpoint: https://oss-eu-west-1.aliyuncs.com
+      bucketName: francophone-java-ai
+      region: eu-west-1
