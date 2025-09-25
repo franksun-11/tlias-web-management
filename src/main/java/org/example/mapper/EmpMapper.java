@@ -6,6 +6,7 @@ import org.example.pojo.EmpQueryParam;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 员工信息
@@ -56,4 +57,10 @@ public interface EmpMapper {
      * 根据id修改员工信息
      */
     void updateById(Emp emp);
+
+    /**
+     * 统计员工职位人数
+     */
+    @MapKey("pos")
+    List<Map<String, Object>> countEmpJobData();
 }
