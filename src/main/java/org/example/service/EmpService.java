@@ -32,4 +32,9 @@ public interface EmpService {
      * 根据id查询回显
      */
     Emp findById(Integer id);
+
+    /**
+     * 修改员工
+     */
+    void update(Emp emp);
 }
