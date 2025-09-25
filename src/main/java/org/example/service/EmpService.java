@@ -4,6 +4,7 @@ import org.example.mapper.EmpMapper;
 import org.example.pojo.Emp;
 import org.example.pojo.EmpQueryParam;
 import org.example.pojo.PageResult;
+import org.example.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,8 @@ public interface EmpService {
      * 批量删除员工
      */
     void delete(List<Integer> ids);
+    /**
+     * 根据id查询回显
+     */
+    Emp findById(Integer id);
 }

@@ -25,4 +25,45 @@
         </where>
         order by e.update_time desc
     </select>
+
+    <!--定义ResultMap-->
+    <resultMap id="empResultMap" type="org.example.pojo.Emp">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="phone" property="phone"/>
+        <result column="job" property="job"/>
+        <result column="salary" property="salary"/>
+        <result column="image" property="image"/>
+        <result column="entry_date" property="entryDate"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+
+        <!--封装员工工作经历信息-->
+        <collection property="exprList" ofType="org.example.pojo.EmpExpr">
+            <id column="ee_id" property="id"/>
+            <result column="ee_empid" property="empId"/>
+            <result column="ee_begin" property="begin"/>
+            <result column="ee_end" property="end"/>
+            <result column="ee_company" property="company"/>
+            <result column="ee_job" property="job"/>
+        </collection>
+    </resultMap>
+
+    <!--根据id查询回显-->
+    <select id="findById" resultMap="empResultMap">
+        select
+            e.*,
+            ee.id ee_id,
+            ee.emp_id ee_empid,
+            ee.begin ee_begin,
+            ee.end ee_end,
+            ee.company ee_company,
+            ee.job ee_job
+        from emp e left outer join emp_expr ee on e.id = ee.emp_id
+        where e.id = #{id};
+    </select>
 </mapper>

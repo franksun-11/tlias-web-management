@@ -97,4 +97,13 @@ public class EmpServiceImpl implements EmpService {
         // 2.删除员工工作经历表
         empExprMapper.deleteByEmpIds(ids);
     }
+
+    /**
+     * 根据id查询员工信息
+     */
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public Emp findById(Integer id){
+        return empMapper.findById(id);
+    }
 }

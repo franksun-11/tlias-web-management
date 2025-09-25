@@ -66,4 +66,14 @@ public class EmpController {
         empService.delete(ids);
         return Result.success();
     }
+
+    /**
+     * 根据主键id查询
+     */
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id){
+        log.info("根据id查询：{}", id);
+        Emp emp = empService.findById(id);
+        return Result.success(emp);
+    }
 }
