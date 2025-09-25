@@ -24,4 +24,14 @@ public class ReportController {
         JobOption jobOption = reportService.getEmpJobData();
         return Result.success(jobOption);
     }
+
+    /**
+     * 统计员工性别人数
+     */
+    @GetMapping ("empGenderData")
+    public Result getEmpGenderData(){
+        log.info("统计员工性别人数");
+        List<Map<String, Object>> genderList = reportService.getEmpGenderData();
+        return Result.success(genderList);
+    }
 }

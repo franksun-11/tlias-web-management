@@ -120,4 +120,10 @@
             count(*) num
         from emp group by job order by num;
     </select>
+    <select id="countEmpGenderData" resultType="java.util.Map">
+        select
+            if(gender = 1, '男性员工', '女性员工') name,
+            count(*) value
+        from emp group by gender;
+    </select>
 </mapper>

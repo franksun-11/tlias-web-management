@@ -24,4 +24,12 @@ public class ReportServiceImpl implements ReportService {
 
         return new JobOption(jobList, dataList);
     }
+
+    /**
+     * 统计员工性别人数
+     */
+    @Override
+    public List<Map<String, Object>> getEmpGenderData() {
+        return empMapper.countEmpGenderData();
+    }
 }
