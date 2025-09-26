@@ -52,6 +52,7 @@
             #{id}
         </foreach>
     </delete>
+    <!--查询员工信息-->
     <select id="list" resultType="org.example.pojo.Emp">
         select e.*, d.name deptName from emp e left outer join dept d on e.dept_id = d.id
         <where>
