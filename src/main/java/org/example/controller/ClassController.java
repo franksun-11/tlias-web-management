@@ -1,10 +1,7 @@
 package org.example.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.pojo.ClassQueryParam;
-import org.example.pojo.Clazz;
-import org.example.pojo.PageResult;
-import org.example.pojo.Result;
+import org.example.pojo.*;
 import org.example.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -77,4 +74,5 @@ public class ClassController {
         classService.update(clazz);
         return Result.success();
     }
+
 }

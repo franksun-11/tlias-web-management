@@ -37,4 +37,9 @@ public interface EmpService {
      * 修改员工
      */
     void update(Emp emp);
+
+    /**
+     * 查询所有员工
+     */
+    List<Emp> list();
 }

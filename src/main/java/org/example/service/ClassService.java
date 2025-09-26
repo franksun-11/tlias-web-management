@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.pojo.ClassQueryParam;
 import org.example.pojo.Clazz;
+import org.example.pojo.Emp;
 import org.example.pojo.PageResult;
 import org.springframework.stereotype.Service;
 
@@ -38,4 +39,6 @@ public interface ClassService {
      * 修改班级信息
      */
     void update(Clazz clazz);
+
+
 }
