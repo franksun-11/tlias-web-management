@@ -82,7 +82,14 @@ public class ClassServiceImpl implements ClassService {
         else {
             clazz.setStatus("在读中");
         }
-        // 3.保存
+        // 3.据masterId在emp表查询出班主任(员工)姓名
+        Emp emp = empMapper.findById(clazz.getMasterId());
+        if(emp != null){
+            clazz.setMasterName(emp.getName());
+        } else {
+            clazz.setMasterName("未知班主任");
+        }
+        // 4.保存
         classMapper.insert(clazz);
     }
 }
