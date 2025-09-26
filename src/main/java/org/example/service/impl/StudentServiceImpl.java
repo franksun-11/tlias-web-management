@@ -11,7 +11,9 @@ import org.example.pojo.StudentQueryParam;
 import org.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,4 +48,24 @@ public class StudentServiceImpl implements StudentService {
         Page<Student> p = (Page<Student>) students;
         return new PageResult<>(p.getTotal(), p.getResult());
     }
+
+    @Override
+    public void save(Student student) {
+        // 1. 补全基础属性 createTime, updateTime
+        student.setCreateTime(LocalDateTime.now());
+        student.setUpdateTime(LocalDateTime.now());
+        // 2. 根据clazzId查询班级信息
+        Clazz clazz = classMapper.findById(student.getClazzId());
+        if (clazz != null) {
+            student.setClazzName(clazz.getName());
+        } else {
+            student.setClazzName("未知班级");
+        }
+        // 3.设置默认值
+        student.setViolationCount(Short.valueOf("0"));
+        student.setViolationScore(Short.valueOf("0"));
+        // 4. 调用mapper的方法插入数据
+        studentMapper.insert(student);
+    }
+
 }

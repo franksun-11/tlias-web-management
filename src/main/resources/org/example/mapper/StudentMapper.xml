@@ -23,6 +23,23 @@
         <result column="create_time"      property="createTime"/>
         <result column="update_time"      property="updateTime"/>
     </resultMap>
+    <!--新增员工-->
+    <insert id="insert" parameterType="org.example.pojo.Student"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into student
+        (
+            name, no, gender, phone, id_card, is_college, address, degree,
+            graduation_date, clazz_id, violation_count, violation_score,
+            create_time, update_time
+        )
+        values
+            (
+                #{name}, #{no}, #{gender}, #{phone}, #{idCard}, #{isCollege}, #{address}, #{degree},
+                #{graduationDate}, #{clazzId}, #{violationCount}, #{violationScore},
+                #{createTime}, #{updateTime}
+            )
+    </insert>
+
 
     <!-- 条件查询 + 按最后操作时间倒序；分页交给 PageHelper.startPage -->
     <select id="list" parameterType="org.example.pojo.StudentQueryParam"

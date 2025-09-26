@@ -1,5 +1,6 @@
 package org.example.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.example.pojo.Student;
 import org.example.pojo.StudentQueryParam;
@@ -13,6 +14,8 @@ public interface StudentMapper {
      */
     List<Student> list(StudentQueryParam param);
 
-
-
+    /**
+     * 添加学员
+     */
+    void insert(Student student);
 }

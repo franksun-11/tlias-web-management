@@ -19,7 +19,6 @@ public class StudentController {
 
     /**
      * 学员分页条件查询
-     * 示例：/students?name=张三&degree=1&clazzId=2&page=1&pageSize=5
      */
     @GetMapping
     public Result page(StudentQueryParam param) {
@@ -27,4 +26,15 @@ public class StudentController {
         PageResult<Student> pageResult = studentService.page(param);
         return Result.success(pageResult);
     }
+
+    /**
+     * 新增学员
+     */
+    @PostMapping
+    public Result add(@RequestBody Student student) {
+        log.info("新增学员：{}", student);
+        studentService.save(student);
+        return Result.success(null);
+    }
+
 }
