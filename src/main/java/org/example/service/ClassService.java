@@ -16,4 +16,14 @@ public interface ClassService {
      *添加班级
      */
     void save(Clazz clazz);
+
+    /**
+     * 根据id查询班级
+     */
+    Clazz findById(Integer id);
+
+    /**
+     * 删除班级
+     */
+    void deleteById(Integer id);
 }

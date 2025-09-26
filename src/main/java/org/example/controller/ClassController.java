@@ -37,4 +37,24 @@ public class ClassController {
         classService.save(clazz);
         return Result.success();
     }
+
+    /**
+     * 根据主键id查询
+     */
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id){
+        log.info("根据id查询：{}", id);
+        Clazz clazz = classService.findById(id);
+        return Result.success(clazz);
+    }
+
+    /**
+     * 根据id删除班级
+     */
+    @DeleteMapping("/{id}")
+    public Result deleteById(@PathVariable Integer id){
+        log.info("根据id删除：{}", id);
+        classService.deleteById(id);
+        return Result.success();
+    }
 }

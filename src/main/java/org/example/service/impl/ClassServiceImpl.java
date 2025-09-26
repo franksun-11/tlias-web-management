@@ -92,4 +92,22 @@ public class ClassServiceImpl implements ClassService {
         // 4.保存
         classMapper.insert(clazz);
     }
+
+    /**
+     * 根据id查询
+     */
+    @Override
+    public Clazz findById(Integer id) {
+        return classMapper.findById(id);
+    }
+
+    /**
+     * 删除班级
+     */
+    @Override
+    public void deleteById(Integer id) {
+        classMapper.deleteById(id);
+    }
+
+
 }
