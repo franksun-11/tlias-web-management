@@ -109,5 +109,43 @@ public class ClassServiceImpl implements ClassService {
         classMapper.deleteById(id);
     }
 
+    /**
+     * 列出所有班级
+     */
+    @Override
+    public List<Clazz> list() {
+        return classMapper.list(null);
+    }
+
+    /**
+     * 修改班级信息
+     */
+    @Override
+    public void update(Clazz clazz) {
+        // 1.补全修改时间
+        clazz.setUpdateTime(LocalDateTime.now());
+        // 2.设置status,若当前时间
+        // - 当前时间 > 结课时间：状态 已结课。
+        //  - 当前时间 < 开课时间：状态 未开班。
+        if (clazz.getEndDate().isBefore(LocalDate.now())) {
+            clazz.setStatus("已结课");
+        }
+        else if (clazz.getBeginDate().isAfter(LocalDate.now())) {
+            clazz.setStatus("未开班");
+        }
+        else {
+            clazz.setStatus("在读中");
+        }
+        // 3.据masterId在emp表查询出班主任(员工)姓名
+        Emp emp = empMapper.findById(clazz.getMasterId());
+        if(emp != null){
+            clazz.setMasterName(emp.getName());
+        } else {
+            clazz.setMasterName("未知班主任");
+        }
+        // 4.修改
+        classMapper.updateById(clazz);
+    }
+
 
 }

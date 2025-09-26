@@ -57,4 +57,24 @@ public class ClassController {
         classService.deleteById(id);
         return Result.success();
     }
+
+    /**
+     * 查询所有班级
+     */
+    @GetMapping("list")
+    public Result checkAll(){
+        log.info("查询所有班级");
+        List<Clazz> clazzList = classService.list();
+        return Result.success(clazzList);
+    }
+
+    /**
+     * 修改班级信息
+     */
+    @PutMapping
+    public Result update(@RequestBody Clazz clazz){
+        log.info("修改班级信息：{}", clazz);
+        classService.update(clazz);
+        return Result.success();
+    }
 }

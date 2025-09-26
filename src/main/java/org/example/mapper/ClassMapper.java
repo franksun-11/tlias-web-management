@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface ClassMapper {
     /**
-     * 查询所有班级
+     * 班级列表查询
      */
     List<Clazz> list(ClassQueryParam classQueryParam);
 
@@ -32,4 +32,9 @@ public interface ClassMapper {
      */
     @Delete("delete from clazz where id = #{Id};")
     void deleteById(Integer id);
+
+    /**
+     * 修改班级信息
+     */
+    void updateById(Clazz clazz);
 }

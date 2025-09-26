@@ -5,6 +5,8 @@ import org.example.pojo.Clazz;
 import org.example.pojo.PageResult;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface ClassService {
     /**
@@ -26,4 +28,14 @@ public interface ClassService {
      * 删除班级
      */
     void deleteById(Integer id);
+
+    /**
+     * 查询所有班级
+     */
+    List<Clazz> list();
+
+    /**
+     * 修改班级信息
+     */
+    void update(Clazz clazz);
 }
