@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.mapper.StudentMapper">
+
+    <!-- 结果映射：列名 -> Student 字段（不包含 clazzName，clazzName 在 Service 中补充） -->
+    <resultMap id="StudentResultMap" type="org.example.pojo.Student">
+        <id     column="id"               property="id"/>
+        <result column="name"             property="name"/>
+        <result column="no"               property="no"/>
+        <result column="gender"           property="gender"/>
+        <result column="phone"            property="phone"/>
+        <result column="id_card"          property="idCard"/>
+        <result column="is_college"       property="isCollege"/>
+        <result column="address"          property="address"/>
+        <result column="degree"           property="degree"/>
+        <result column="graduation_date"  property="graduationDate"/>
+        <result column="clazz_id"         property="clazzId"/>
+        <result column="violation_count"  property="violationCount"/>
+        <result column="violation_score"  property="violationScore"/>
+        <result column="create_time"      property="createTime"/>
+        <result column="update_time"      property="updateTime"/>
+    </resultMap>
+
+    <!-- 条件查询 + 按最后操作时间倒序；分页交给 PageHelper.startPage -->
+    <select id="list" parameterType="org.example.pojo.StudentQueryParam"
+            resultMap="StudentResultMap">
+        select
+        id,
+        name,
+        no,
+        gender,
+        phone,
+        id_card,
+        is_college,
+        address,
+        degree,
+        graduation_date,
+        clazz_id,
+        violation_count,
+        violation_score,
+        create_time,
+        update_time
+        from student
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="degree != null">
+                and degree = #{degree}
+            </if>
+            <if test="clazzId != null">
+                and clazz_id = #{clazzId}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+</mapper>
