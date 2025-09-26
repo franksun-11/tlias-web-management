@@ -7,9 +7,7 @@ import org.example.pojo.PageResult;
 import org.example.pojo.Result;
 import org.example.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +26,15 @@ public class ClassController {
         log.info("分页查询班级数据:{},{},{},{},{}" + classQueryParam);
         PageResult<Clazz> pageResult =classService.page(classQueryParam);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 添加班级
+     */
+    @PostMapping
+    public Result save(@RequestBody Clazz clazz){
+        log.info("添加班级：{}", clazz);
+        classService.save(clazz);
+        return Result.success();
     }
 }

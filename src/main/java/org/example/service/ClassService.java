@@ -11,4 +11,9 @@ public interface ClassService {
      * 分页查询班级
      */
     PageResult<Clazz> page(ClassQueryParam classQueryParam);
+
+    /**
+     *添加班级
+     */
+    void save(Clazz clazz);
 }
