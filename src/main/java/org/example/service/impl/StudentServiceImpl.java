@@ -94,10 +94,29 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.updateById(student);
     }
 
-
+    /**
+     * 批量删除学员信息
+     */
     @Override
     public void deleteByIds(List<Integer> ids) {
         studentMapper.deleteByIds(ids);
+    }
+
+    /**
+     * 违纪处理
+     */
+    @Override
+    public void violationHandle(Integer id, Integer score) {
+        // 1. 根据id查询学员信息
+        Student student = studentMapper.findById(id);
+        if (student == null) {
+            throw new IllegalArgumentException("学员不存在");
+        }
+        // 2. 更新违纪次数和违纪分数
+        student.setViolationCount((short) (student.getViolationCount() + 1));
+        student.setViolationScore((short) (student.getViolationScore() + score));
+        // 3. 调用mapper的方法更新数据
+        studentMapper.updateById(student);
     }
 
 }

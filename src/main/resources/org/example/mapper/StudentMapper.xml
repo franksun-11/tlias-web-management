@@ -39,24 +39,51 @@
                 #{createTime}, #{updateTime}
             )
     </insert>
+    <!-- 修改员工 -->
     <update id="updateById">
         update student
-        set
-        name = #{name},
-        no = #{no},
-        gender = #{gender},
-        phone = #{phone},
-        id_card = #{idCard},
-        is_college = #{isCollege},
-        address = #{address},
-        degree = #{degree},
-        graduation_date = #{graduationDate},
-        clazz_id = #{clazzId},
-        violation_count = #{violationCount},
-        violation_score = #{violationScore},
-        update_time = #{updateTime}
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="no != null and no != ''">
+                no = #{no},
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="idCard != null and idCard != ''">
+                id_card = #{idCard},
+            </if>
+            <if test="isCollege != null">
+                is_college = #{isCollege},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="degree != null and degree != ''">
+                degree = #{degree},
+            </if>
+            <if test="graduationDate != null">
+                graduation_date = #{graduationDate},
+            </if>
+            <if test="clazzId != null">
+                clazz_id = #{clazzId},
+            </if>
+            <if test="violationCount != null">
+                violation_count = #{violationCount},
+            </if>
+            <if test="violationScore != null">
+                violation_score = #{violationScore},
+            </if>
+            update_time = NOW(),
+        </set>
         where id = #{id}
     </update>
+
     <!--批量删除学员-->
     <delete id="deleteByIds">
         delete from student where id in

@@ -70,6 +70,16 @@ public class StudentController {
         return Result.success(null);
     }
 
+    /**
+     * 学员扣分处理
+     */
+    @PutMapping("violation/{id}/{score}")
+    public Result violationHandle(@PathVariable Integer id, @PathVariable Integer score){
+        log.info("学员编号：{}，扣分：{}", id, score);
+        studentService.violationHandle(id, score);
+        return Result.success();
+    }
+
 
 
 
