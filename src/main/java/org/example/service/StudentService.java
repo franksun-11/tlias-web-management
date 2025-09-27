@@ -5,6 +5,8 @@ import org.example.pojo.Student;
 import org.example.pojo.StudentQueryParam;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface StudentService {
     /**
@@ -26,4 +28,9 @@ public interface StudentService {
      * 修改学生信息
      */
     void update(Student student);
+
+    /**
+     * 批量删除学生
+     */
+    void deleteByIds(List<Integer> ids);
 }

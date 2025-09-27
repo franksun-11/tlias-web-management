@@ -57,6 +57,13 @@
         update_time = #{updateTime}
         where id = #{id}
     </update>
+    <!--批量删除学员-->
+    <delete id="deleteByIds">
+        delete from student where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 
 
     <!-- 条件查询 + 按最后操作时间倒序；分页交给 PageHelper.startPage -->

@@ -9,6 +9,8 @@ import org.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/students")
@@ -55,6 +57,17 @@ public class StudentController {
         log.info("修改学员：{}", student);
         studentService.update(student);
         return Result.success();
+    }
+
+    /**
+     * 批量删除学员
+     * 示例：DELETE /students/1,2,3
+     */
+    @DeleteMapping("/{ids}")
+    public Result delete(@PathVariable List<Integer> ids) {
+        log.info("批量删除学员：{}", ids);
+        studentService.deleteByIds(ids);
+        return Result.success(null);
     }
 
 

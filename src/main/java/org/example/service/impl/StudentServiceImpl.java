@@ -94,4 +94,10 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.updateById(student);
     }
 
+
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        studentMapper.deleteByIds(ids);
+    }
+
 }
