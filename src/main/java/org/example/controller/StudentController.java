@@ -37,4 +37,27 @@ public class StudentController {
         return Result.success(null);
     }
 
+    /**
+     * 根据ID查询学员
+     */
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id) {
+        log.info("根据ID查询学员：{}", id);
+        Student student = studentService.findById(id);
+        return Result.success(student);
+    }
+
+    /**
+     * 修改学员
+     */
+    @PutMapping
+    public Result update(@RequestBody Student student) {
+        log.info("修改学员：{}", student);
+        studentService.update(student);
+        return Result.success();
+    }
+
+
+
+
 }

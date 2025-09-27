@@ -39,6 +39,24 @@
                 #{createTime}, #{updateTime}
             )
     </insert>
+    <update id="updateById">
+        update student
+        set
+        name = #{name},
+        no = #{no},
+        gender = #{gender},
+        phone = #{phone},
+        id_card = #{idCard},
+        is_college = #{isCollege},
+        address = #{address},
+        degree = #{degree},
+        graduation_date = #{graduationDate},
+        clazz_id = #{clazzId},
+        violation_count = #{violationCount},
+        violation_score = #{violationScore},
+        update_time = #{updateTime}
+        where id = #{id}
+    </update>
 
 
     <!-- 条件查询 + 按最后操作时间倒序；分页交给 PageHelper.startPage -->

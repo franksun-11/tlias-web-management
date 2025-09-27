@@ -68,4 +68,30 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.insert(student);
     }
 
+    /**
+     * 根据id查询学员信息
+     */
+    @Override
+    public Student findById(Integer id) {
+        return studentMapper.findById(id);
+    }
+
+    /**
+     * 修改学生信息
+     */
+    @Override
+    public void update(Student student) {
+        // 1. 补全基础属性 updateTime
+        student.setUpdateTime(LocalDateTime.now());
+        // 2. 根据clazzId查询班级信息
+        Clazz clazz = classMapper.findById(student.getClazzId());
+        if (clazz != null) {
+            student.setClazzName(clazz.getName());
+        } else {
+            student.setClazzName("未知班级");
+        }
+        // 3. 调用mapper的方法更新数据
+        studentMapper.updateById(student);
+    }
+
 }
