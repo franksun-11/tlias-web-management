@@ -8,6 +8,7 @@ import org.example.mapper.EmpMapper;
 import org.example.pojo.*;
 import org.example.service.EmpLogService;
 import org.example.service.EmpService;
+import org.example.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,10 @@ import org.springframework.util.CollectionUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Slf4j
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -140,12 +144,19 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public LoginInfo login(Emp emp) {
         // 1.调用mapper接口，根据用户名和密码查询员工信息
-        Emp loginEmp = empMapper.SelectByUsernameAndPassword(emp);
+        Emp e = empMapper.SelectByUsernameAndPassword(emp);
         // 2.判断员工是否存在
         // 2.1 如果存在，组装登录成功信息
-        if(loginEmp != null){
-            log.info("登录成功：{}", loginEmp);
-            return new LoginInfo(loginEmp.getId(), loginEmp.getUsername(), loginEmp.getName(),"");
+        if(e != null){
+            log.info("登录成功：{}", e);
+            // 2.2.1 生成JWT令牌
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", e.getId());
+            claims.put("username", e.getUsername());
+            claims.put("name", e.getName());
+            String token = JwtUtils.generateToken(claims);
+            // 2.2.2 封装登录成功信息
+            return new LoginInfo(e.getId(), e.getUsername(), e.getName(), token);
         }
         // 2.2 如果不存在，返回null
             return null;
