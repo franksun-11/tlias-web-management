@@ -1,10 +1,7 @@
 package org.example.service;
 
 import org.example.mapper.EmpMapper;
-import org.example.pojo.Emp;
-import org.example.pojo.EmpQueryParam;
-import org.example.pojo.PageResult;
-import org.example.pojo.Result;
+import org.example.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
@@ -42,4 +39,9 @@ public interface EmpService {
      * 查询所有员工
      */
     List<Emp> list();
+
+    /**
+     * 登录
+     */
+    LoginInfo login(Emp emp);
 }
