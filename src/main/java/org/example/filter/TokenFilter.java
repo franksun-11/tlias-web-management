@@ -43,5 +43,6 @@ public class TokenFilter implements Filter {
         }
         // 6.校验通过放行
         log.info("token校验通过，放行");
+        filterChain.doFilter(request, response);
     }
 }
