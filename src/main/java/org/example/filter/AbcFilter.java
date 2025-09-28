@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /*@WebFilter(urlPatterns = "/*")*/ // 拦截所有请求
 @Slf4j
-public class DemoFilter implements Filter {
+public class AbcFilter implements Filter {
     // 初始化方法, web服务器启动时执行, 调用一次
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
