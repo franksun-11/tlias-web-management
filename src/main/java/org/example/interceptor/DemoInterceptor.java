@@ -14,7 +14,7 @@ public class DemoInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("preHandle...");
-        return false;
+        return true;
     }
     // 在目标方法执行之后执行
     @Override

@@ -13,12 +13,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-//    @Autowired
-//    private DemoInterceptor demoInterceptor;
-    @Autowired
-    private TokenInterceptor tokenInterceptor;
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**"); // 拦截所有请求
-    }
+/*    @Autowired
+    private DemoInterceptor demoInterceptor;*/
+/*    @Autowired
+    private TokenInterceptor tokenInterceptor;*/
+/*    @Override*/
+/*    public void addInterceptors(InterceptorRegistry registry) {*/
+/*///*        registry.addInterceptor(demoInterceptor)*/
+//                .addPathPatterns("/**"); // 拦截哪些请求*/
+//        registry.addInterceptor(tokenInterceptor)
+//                .addPathPatterns("/**") // 拦截哪些请求
+//                .excludePathPatterns("/login"); // 放行哪些请求
+/*    }*/
 }
